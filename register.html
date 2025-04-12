@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MechaMaster | Solusi Tepat untuk Kendaraan Anda</title>
+    <link rel="website icon" type="png" href="assets/img/mecha_web_icon.png">
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <script src="js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar-container">
+        <div class="navbar-logo">
+            <a href="index.html"><img src="assets/img/Mechamaster.png" alt="MechaMaster"></a>
+        </div>
+
+        <nav class="nav-list">
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="AboutUs.html">About US</a></li>
+                <li><a href="mechanic.html">Mechanic</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="kontak.html">Contact</a></li>
+                <li><a href="password.html">Pembayaran</a></li>
+            </ul>
+        </nav>
+
+        <form class="search-form">
+            <input type="text" placeholder="Cari..." class="search-input">
+            <button type="submit" class="search-button">Cari</button>
+        </form>
+    </header>
+
+    <main>
+        <article class="content">
+            <h2>Register</h2>
+            <div class="contact-container">
+                <form class="form-container" onsubmit="showNotification(event)">
+                    <section class="input-container">
+                        <input type="text" name="nama" id="nama" placeholder="Nama lengkap" required>
+                        <input type="number" name="noWA" id="noWA" placeholder="No whatsapp : +62" required>
+                        <input type="email" name="email" id="email" placeholder="example@gmail.com" required>
+                        <input type="text" name="jenis_motor" id="jenis_motor" placeholder="Jenis motor" required>
+                        <select name="kelamin" id="kelamin" placeholder="Jenis Kelamin" required>
+                            <option value="">Jenis Kelamin</option>
+                            <option value="">Laki-laki</option>
+                            <option value="">Perempuan</option>
+                        </select>
+                        <input type="text" name="alamat" id="alamat" placeholder="Alamat : No rumah, Jalan, Kelurahan, Kecamatan, Kota" required>
+                        <input type="text" name="noPlat" id="noPlat" placeholder="No Plat : B xxxx XYZ" required>
+                    </section>
+            
+                    <section class="btn-container">
+                        <input type="submit" value="Kirim" class="btn-1">
+                        <!-- <button id="clear-btn" class="btn-3">Hapus</button> -->
+                        <input class="btn-3" type="button" value="Hapus" onclick="resetForm()">
+                    </section>
+                </form>
+            </div>
+        </article>
+    </main>
+
+    <div id="notification" class="notification">
+        Pendaftaran Berhasil!
+    </div>
+
+    <footer>
+        <p> Hak Cipta &copy; 2024 MechaMaster.</p>
+    </footer>
+</body>
+</html>

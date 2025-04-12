@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MechaMaster | Solusi Tepat untuk Kendaraan Anda</title>
+    <link rel="website icon" type="png" href="assets/img/mecha_web_icon.png">
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <script src="js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <style>
+        .button-container {
+            margin-top: 10px;
+        }
+        .sparepart-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+
+        }
+        .sparepart-group select {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar-container">
+        <div class="navbar-logo">
+            <a href="Home.html"><img src="assets/img/Mechamaster.png" alt="MechaMaster"></a>
+        </div>
+
+        <nav class="nav-list">
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="AboutUs.html">About US</a></li>
+                <li><a href="mechanic.html">Mechanic</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="kontak.html">Contact</a></li>
+                <li><a href="password.html">Pembayaran</a></li>
+            </ul>
+        </nav>
+        <form class="search-form">
+            <input type="text" placeholder="Cari..." class="search-input">
+            <button type="submit" class="search-button">Cari</button>
+        </form>
+    </header>
+
+    <main>
+        <article class="content">
+            <h2>Biaya Perbaikan motor dan spare part</h2>
+            <div class="price-container">
+                <h3>Daftar Harga</h3>
+                <div class="price-list">
+                    <ul>
+                        <li>Pemeriksaan Umum: Rp50,000</li>
+                        <li>Ganti Oli dan Filter: Rp100,000</li>
+                        <li>Perbaikan Mesin: Rp250,000</li>
+                        <li>Perbaikan Sistem Kelistrikan: Rp200,000</li>
+                    </ul>
+
+                    <ul>
+                        <li>Pemeriksaan dan Penyetelan Rem: Rp150,000</li>
+                        <li>Ganti Ban dan Balancing: Rp50,000</li>
+                        <li>Perbaikan Suspensi: Rp75,000</li>
+                        <li>Diagnosa Mesin: Rp100,000</li>
+                    </ul>
+                </div>
+                <br><br><br>
+                <h3>Level mechanic</h3>
+                <div class="price-list">
+                    <ul>
+                        <li>Mekanik Junior: Rp20.000</li>
+                        <br>
+                        <li>Mekanik Menengah: Rp25.000</li>
+                        <br>
+                        
+                    </ul>
+
+                    <ul>
+                        <li>Mekanik Senior: Rp35.000</li>
+                        <br>
+                        <li>Mekanik Spesialis: Rp50.000</li>
+                    </ul>
+                </div>
+            </div>            
+        </article>
+
+        <article class="content">
+            <h2>Bayar</h2>
+            <div class="contact-container">
+                <form id="form-mekanik" class="form-container">
+                    <section class="input-container">
+                        <select id="mekanik" name="mekanik">
+                            <option value="Mekanik Junior">Mekanik Junior</option>
+                            <option value="Mekanik Menengah">Mekanik Menengah</option>
+                            <option value="Mekanik Senior">Mekanik Senior</option>
+                            <option value="Mekanik Spesialis">Mekanik Spesialis</option>
+                        </select>
+                        <input type="date" id="tanggal" name="tanggal">
+                        <input type="time" id="jam" name="jam">
+                    </section>
+                    
+                    <div id="sparepart-container"></div>
+                    
+                    <div class="button-container">
+                        <button class="btn-3" type="button" onclick="addSparepart()">Tambah Sparepart</button>
+                        <button class="btn-3" type="button" onclick="calculateTotal()">Hitung</button>
+                        <button class="btn-3" type="button" onclick="resetForm()">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </article>
+        
+        <center><div id="total-biaya-text" style="font-size: 30px; font-weight: bold;"></div></center>
+       
+        
+
+        <script>
+            const mechanicRates = {
+                "Mekanik Junior": 20000,
+                "Mekanik Menengah": 25000,
+                "Mekanik Senior": 35000,
+                "Mekanik Spesialis": 50000
+            };
+    
+            const sparepartPrices = {
+                "Pemeriksaan Umum": 50000,
+                "Ganti Oli dan Filter": 100000,
+                "Perbaikan Mesin": 250000,
+                "Perbaikan Sistem Kelistrikan": 200000,
+                "Pemeriksaan dan Penyetelan Rem": 150000,
+                "Ganti Ban dan Balancing": 50000,
+                "Perbaikan Suspensi": 75000,
+                "Diagnosa Mesin": 100000
+            };
+    
+            function addSparepart() {
+                const sparepartContainer = document.getElementById('sparepart-container');
+                const newSparepart = document.createElement('div');
+                newSparepart.className = 'sparepart-group';
+                newSparepart.innerHTML = `
+                    <select class="sparepart-type">
+                        ${Object.keys(sparepartPrices).map(item => 
+                            `<option value="${item}">${item} - Rp${sparepartPrices[item].toLocaleString()}</option>`).join('')}
+                    </select>
+                    <button type="button" class="btn-3" onclick="removeSparepart(this)">Hapus</button>
+                `;
+                sparepartContainer.appendChild(newSparepart);
+            }
+    
+            function removeSparepart(button) {
+                button.parentElement.remove();
+            }
+    
+            function calculateTotal() {
+                const mechanicType = document.getElementById('mekanik').value;
+                const mechanicCost = mechanicRates[mechanicType] || 0;
+                let totalSparepart = 0;
+                document.querySelectorAll('.sparepart-type').forEach(select => {
+                    totalSparepart += sparepartPrices[select.value] || 0;
+                });
+                const totalCost = mechanicCost + totalSparepart;
+                document.getElementById('total-biaya-text').innerText = `Total Biaya: Rp${totalCost.toLocaleString()}`;
+            }
+    
+            function resetForm() {
+                document.getElementById('form-mekanik').reset();
+                document.getElementById('sparepart-container').innerHTML = '';
+                document.getElementById('total-biaya-text').innerText = '';
+                addSparepart(); // Menambahkan satu input sparepart secara otomatis setelah reset
+            }
+    
+            // Menambahkan satu input sparepart secara otomatis saat halaman dimuat
+            document.addEventListener('DOMContentLoaded', addSparepart);
+        </script>
+    </main>
+
+    <footer>
+        <p> Hak Cipta &copy; 2024 MechaMaster.</p>
+    </footer>
+</body>
+</html>
